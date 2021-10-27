@@ -56,5 +56,9 @@ if [ $? -eq 1 ]; then
 fi
 
 # Connect the chosen instance to the cluster
-rhoas cluster connect -n $NAMESPACE
-rhoas cluster bind --app-name shipwars-game-server
+rhoas cluster connect --service-type kafka -n $NAMESPACE
+rhoas cluster bind --service-type kafka --app-name shipwars-game-server
+
+# Configure permissions for the generated service account
+CLIENT_ID=$(oc get secret rh-cloud-services-service-account -o jsonpath='{.data.client-id}' | base64 --decode)
+rhoas kafka acl grant-access --yes --producer --consumer --service-account $CLIENT_ID --topic-prefix shipwars --group all
