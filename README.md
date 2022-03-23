@@ -149,7 +149,7 @@ cd shipwars-deployment/docker/
 # have completed the "Using with OpenShift Streams for Apache Kafka" section of
 # this README first. Use "rhoas serviceaccount create" or the UI at
 # cloud.redhat.com/beta/application-services/streams to obtain user/pass
-KAFKACONNECTION_BOOTSTRAPSERVERS=$(rhoas kafka describe | jq .bootstrapServerHost -r) \
+KAFKACONNECTION_BOOTSTRAPSERVERS=$(rhoas kafka describe | jq ..bootstrap_server_host -r) \
 KAFKACONNECTION_SSL=true \
 KAFKACONNECTION_USER=replace_with_sasl_client_id \
 KAFKACONNECTION_PASSWORD=replace_with_sasl_client_secret \
@@ -185,7 +185,7 @@ cd shipwars-deployment/docker-local-dev/
 # have completed the "Using with OpenShift Streams for Apache Kafka" section of
 # this README first. Use "rhoas serviceaccount create" or the UI at
 # cloud.redhat.com/beta/application-services/streams to obtain user/pass
-KAFKACONNECTION_BOOTSTRAPSERVERS=$(rhoas kafka describe | jq .bootstrapServerHost -r) \
+KAFKACONNECTION_BOOTSTRAPSERVERS=$(rhoas kafka describe | jq .bootstrap_server_host -r) \
 KAFKACONNECTION_SSL=true \
 KAFKACONNECTION_USER=replace_with_sasl_client_id \
 KAFKACONNECTION_PASSWORD=replace_with_sasl_client_secret \
